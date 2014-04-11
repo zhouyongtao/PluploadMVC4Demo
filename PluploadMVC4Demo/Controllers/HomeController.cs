@@ -8,23 +8,28 @@ namespace PluploadMVC4Demo.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
+        /// <summary>
+        /// 首页
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// 文件上传
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Upload()
         {
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 var file = Request.Files[i];
-                file.SaveAs(AppDomain.CurrentDomain.BaseDirectory + "Uploads/" + file.FileName);
+                if (file != null)
+                    file.SaveAs(AppDomain.CurrentDomain.BaseDirectory + "Uploads/" + file.FileName);
             }
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
-
     }
 }
