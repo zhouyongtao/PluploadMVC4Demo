@@ -27,7 +27,9 @@ namespace PluploadMVC4Demo.Controllers
             {
                 var file = Request.Files[i];
                 if (file != null)
+                {
                     file.SaveAs(AppDomain.CurrentDomain.BaseDirectory + "Uploads/" + file.FileName);
+                }
             }
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
